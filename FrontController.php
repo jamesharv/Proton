@@ -45,7 +45,7 @@ class FrontController
     protected function loadView($viewName=false)
     {
         $this->setScope('views');
-        $uri = preg_replace('/\.html$/', '', trim($viewName ? $viewName : $_SERVER['REQUEST_URI'], '/'));
+        $uri = preg_replace('/\.html$/', '', trim($viewName ? $viewName : @$_SERVER['REDIRECT_URL'], '/'));
         if (isset($_REQUEST['viewmenu']) || !$view = $this->loadPartial($uri, '.php')){
           $anchors = array_map(function($name){
             return '<a href="/' . $name . '">' . $name . '</a>';
